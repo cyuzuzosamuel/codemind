@@ -78,6 +78,8 @@ export default async function handler(request: VercelRequest, response: VercelRe
     })
 
     if (!resendResponse.ok) {
+      const resendError = await resendResponse.text()
+      console.error('Resend rejected contact email:', resendResponse.status, resendError)
       return response.status(502).json({ error: 'The email service could not accept the message.' })
     }
 

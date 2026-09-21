@@ -21,7 +21,9 @@ CONTACT_EMAIL=cyuzuzocyisezeranosamuel@gmail.com
 CONTACT_FROM_EMAIL=website@your-verified-domain.com
 ```
 
-Verify the sender domain in Resend before using the form publicly. For local testing, run the Vercel development server so `/api/contact` is available:
+For production, replace `CONTACT_FROM_EMAIL` with an address on a domain verified in Resend. Do not leave the example value unchanged. For a temporary Resend test, use `onboarding@resend.dev` as the sender and send only to the email address associated with your Resend account.
+
+After changing Vercel environment variables, redeploy so the function receives the new values. For local testing, run the Vercel development server so `/api/contact` is available:
 
 ```bash
 npx vercel dev
