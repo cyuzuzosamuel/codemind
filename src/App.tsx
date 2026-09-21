@@ -1222,7 +1222,7 @@ function TestimonialsPage() {
         eyebrow="Testimonials"
         title="What clients say about working with CodeMind."
         description="Sample feedback is shared here to illustrate how the brand and service story can be presented while future client reviews are added."
-        image={projects[3].image}
+        image={projects[2].image}
       />
 
       <section className="section-block">
