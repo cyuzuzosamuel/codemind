@@ -8,9 +8,11 @@ import {
   CheckCircle2,
   ChevronDown,
   ChevronRight,
+  ClipboardList,
   Code2,
   Globe2,
   LayoutGrid,
+  Lightbulb,
   Mail,
   MapPin,
   Menu,
@@ -22,6 +24,7 @@ import {
   Smartphone,
   Star,
   Target,
+  TrendingUp,
   Wrench,
   X,
 } from 'lucide-react'
@@ -67,26 +70,36 @@ const navItems = [
   { label: 'Contact', href: '/contact' },
 ]
 
-const deliverySteps = [
+const journeyStages = [
   {
-    title: 'Brief & Strategy',
-    text: 'We listen, define goals and align the roadmap.',
-    icon: Rocket,
+    title: 'Discover',
+    text: 'Understand your goals, ideas, and challenges.',
+    icon: Lightbulb,
   },
   {
-    title: 'Design & Plan',
-    text: 'We shape the experience and structure the build.',
-    icon: LayoutGrid,
+    title: 'Plan',
+    text: 'Define the strategy, requirements, and solution.',
+    icon: ClipboardList,
   },
   {
-    title: 'Build & Test',
-    text: 'We develop, refine and validate every feature.',
+    title: 'Build',
+    text: 'Design and develop the digital product.',
     icon: Code2,
   },
   {
-    title: 'Launch & Support',
-    text: 'We deliver the project and keep it growing.',
-    icon: CheckCircle2,
+    title: 'Test & Refine',
+    text: 'Test quality, performance, usability, and security.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Launch',
+    text: 'Deploy the solution and make it available to users.',
+    icon: Rocket,
+  },
+  {
+    title: 'Grow Together',
+    text: 'Improve, support, and innovate continuously.',
+    icon: TrendingUp,
   },
 ]
 
@@ -584,11 +597,22 @@ function Header() {
 
 function HomePage() {
   const [activeStep, setActiveStep] = useState(0)
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  )
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const handleMotionPreference = (event: MediaQueryListEvent) => setPrefersReducedMotion(event.matches)
+    mediaQuery.addEventListener('change', handleMotionPreference)
+
+    return () => mediaQuery.removeEventListener('change', handleMotionPreference)
+  }, [])
 
   useEffect(() => {
     const timer = window.setInterval(() => {
-      setActiveStep((current) => (current + 1) % deliverySteps.length)
-    }, 2400)
+      setActiveStep((current) => (current + 1) % journeyStages.length)
+    }, 2300)
 
     return () => window.clearInterval(timer)
   }, [])
@@ -603,27 +627,18 @@ function HomePage() {
             transition={{ duration: 0.5 }}
             className="hero-copy brand-copy"
           >
-            <div className="brand-logo-row" aria-label="CodeMind logo">
-              <img src="/c.png" alt="CodeMind Digital Agency Ltd" className="hero-logo-image" />
-            </div>
-
-            <h1>Turning Your Ideas <span>Into Digital Solutions</span></h1>
+            <span className="journey-eyebrow"><span className="journey-eyebrow-dot" /> Our Journey</span>
+            <h1>From Ideas to <span>Real Impact</span></h1>
             <p>
-              Tell us what you want to build. We turn your idea into a clear, useful digital product that is ready to launch and grow.
+              We turn ideas into powerful digital solutions through strategy, technology, creativity, and continuous innovation.
             </p>
 
-            <div className="hero-badges">
-              <span>Modern Design</span>
-              <span>Reliable Solutions</span>
-              <span>On-Time Delivery</span>
-            </div>
-
             <div className="hero-actions">
-              <Link to="/contact" className="primary-button">
-                Start a Project
+              <Link to="/services" className="primary-button">
+                Explore Our Services <ArrowRight size={17} />
               </Link>
-              <Link to="/projects" className="secondary-button light-button">
-                Explore Our Work
+              <Link to="/contact" className="secondary-button light-button">
+                Start a Project
               </Link>
             </div>
           </motion.div>
@@ -634,52 +649,45 @@ function HomePage() {
             transition={{ duration: 0.5 }}
             className="hero-visual brand-visual"
           >
-            <div className="cyclic-process-panel">
-              <div className="cycle-header">
-                <span className="cycle-label">Project journey</span>
-                <span className="cycle-status">From idea to launch</span>
-              </div>
-
-              <div className="cycle-stage-stack">
-                {deliverySteps.map((step, index) => {
+            <div className="journey-visual" aria-label="CodeMind project journey">
+              <div className="journey-orbit">
+                <div className="journey-track" />
+                <div className="journey-progress" />
+                <div className="journey-center">
+                  <img src="/c.png" alt="CodeMind Digital Agency Ltd" className="journey-logo" />
+                  <span>IDEA <b>→</b> STRATEGY <b>→</b> SOLUTION <b>→</b> IMPACT</span>
+                </div>
+                {journeyStages.map((step, index) => {
                   const Icon = step.icon
                   const isActive = index === activeStep
 
                   return (
                     <motion.div
                       key={step.title}
-                      className={`cycle-step ${isActive ? 'active' : ''}`}
-                      animate={{
-                        opacity: isActive ? 1 : 0.32,
-                        scale: isActive ? 1 : 0.96,
-                        y: isActive ? 0 : 18,
-                        filter: isActive ? 'blur(0px)' : 'blur(0.4px)',
+                      className={`journey-stage journey-stage-${index + 1} ${isActive ? 'active' : ''}`}
+                      animate={prefersReducedMotion ? { opacity: 1 } : {
+                        opacity: isActive ? 1 : 0.62,
+                        scale: isActive ? 1.04 : 1,
                       }}
-                      transition={{ duration: 0.45, ease: 'easeOut' }}
+                      transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.55, ease: 'easeOut' }}
+                      style={{ '--stage-index': index } as React.CSSProperties}
                     >
-                      <div className="cycle-icon-wrap">
+                      <div className="journey-icon-wrap">
                         <Icon size={20} />
                       </div>
-
-                      <div className="cycle-copy">
+                      <div className="journey-stage-copy">
                         <strong>{step.title}</strong>
                         <span>{step.text}</span>
                       </div>
-
-                      <div className="cycle-number">0{index + 1}</div>
                     </motion.div>
                   )
                 })}
               </div>
-
-              <div className="cycle-dots" aria-label="Project stages progress">
-                {deliverySteps.map((step, index) => (
-                  <span
-                    key={step.title}
-                    className={index === activeStep ? 'dot active' : 'dot'}
-                    aria-label={`Stage ${index + 1}: ${step.title}`}
-                  />
-                ))}
+              <div className="journey-legend" aria-live="polite">
+                <span className="journey-legend-number">0{activeStep + 1}</span>
+                <span>{journeyStages[activeStep].title}</span>
+                <span className="journey-legend-line" />
+                <span>06</span>
               </div>
             </div>
           </motion.div>
