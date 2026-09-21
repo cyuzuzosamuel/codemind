@@ -874,6 +874,7 @@ function AboutPage() {
         eyebrow="Why CodeMind?"
         title="Technology should help good ideas become real solutions."
         description="CodeMind was born from a simple belief: technology should not only be something we use, but something we create to solve real problems."
+        image={projects[2].image}
       />
 
       <section className="section-block">
@@ -1009,6 +1010,7 @@ function ServicesPage() {
         eyebrow="Services"
         title="Solutions designed around business needs and user experience."
         description="CodeMind offers a thoughtful mix of design, development, automation, and product support services for teams that want meaningful digital outcomes."
+        image={projects[1].image}
       />
 
       <section className="section-block">
@@ -1073,6 +1075,7 @@ function ProjectsPage() {
         eyebrow="Projects"
         title="Digital products built with purpose."
         description="Sample portfolio work that reflects the kind of digital solutions CodeMind can help design, build, and improve."
+        image={projects[0].image}
       />
 
       <section className="section-block">
@@ -1192,6 +1195,7 @@ function ProcessPage() {
         eyebrow="Our process"
         title="From Idea to Impact."
         description="A clear, collaborative process that keeps projects focused, realistic, and aligned to business outcomes."
+        image={projects[2].image}
       />
 
       <section className="section-block">
@@ -1218,6 +1222,7 @@ function TestimonialsPage() {
         eyebrow="Testimonials"
         title="What clients say about working with CodeMind."
         description="Sample feedback is shared here to illustrate how the brand and service story can be presented while future client reviews are added."
+        image={projects[3].image}
       />
 
       <section className="section-block">
@@ -1259,6 +1264,7 @@ function BlogPage() {
         eyebrow="Insights"
         title="Thoughtful ideas for technology, growth, and digital transformation."
         description="Sample blog content designed to demonstrate expertise and support search visibility while future articles are added."
+        image={blogPosts[0].image}
       />
 
       <section className="section-block">
@@ -1377,6 +1383,7 @@ function FaqPage() {
         eyebrow="FAQ"
         title="Frequently asked questions."
         description="A quick guide to common questions about project scope, timing, pricing, and working with CodeMind."
+        image={projects[4 % projects.length].image}
       />
 
       <section className="section-block">
@@ -1399,9 +1406,12 @@ function FaqPage() {
   )
 }
 
-function PageHeader({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+function PageHeader({ eyebrow, title, description, image }: { eyebrow: string; title: string; description: string; image: string }) {
   return (
-    <section className="page-header">
+    <section
+      className="page-header"
+      style={{ backgroundImage: `linear-gradient(110deg, rgba(4, 15, 31, 0.92), rgba(7, 38, 78, 0.72)), url(${image})` }}
+    >
       <div className="container page-header-inner">
         <span className="eyebrow">{eyebrow}</span>
         <h1>{title}</h1>

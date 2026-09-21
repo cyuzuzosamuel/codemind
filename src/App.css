@@ -13,8 +13,8 @@
   z-index: 40;
   backdrop-filter: blur(14px);
   background:
-    radial-gradient(circle at 78% 42%, rgba(14, 165, 233, 0.12), transparent 30%),
-    linear-gradient(122deg, #040f1f 0%, #072646 58%, #0a3d70 100%);
+    radial-gradient(circle at 78% 42%, rgba(14, 165, 233, 0.2), transparent 30%),
+    linear-gradient(122deg, #061426 0%, #0a2344 58%, #0a3d70 100%);
   border-bottom: 1px solid rgba(125, 211, 252, 0.16);
   box-shadow: 0 10px 30px rgba(7, 22, 43, 0.14);
 }
@@ -1447,16 +1447,29 @@
 }
 
 .page-header {
+  position: relative;
+  overflow: hidden;
   padding: 84px 0 28px;
-  background: linear-gradient(180deg, rgba(11, 16, 31, 0.76), rgba(11, 16, 31, 0.46));
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .page-header-inner {
+  position: relative;
+  z-index: 1;
   text-align: center;
 }
 
 .page-header h1 {
+  color: #ffffff;
   font-size: clamp(2.6rem, 5vw, 4.2rem);
+}
+
+.page-header p {
+  margin-right: auto;
+  margin-left: auto;
+  color: #dbeafe;
 }
 
 .grid-2,
