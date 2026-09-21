@@ -546,13 +546,7 @@ function Header() {
     <header className="topbar">
       <div className="container nav-wrap">
         <Link to="/" className="logo" aria-label="CodeMind home page">
-          <span className="logo-mark">
-            <span className="logo-mark-inner">C</span>
-          </span>
-          <div className="logo-text-group">
-            <span className="logo-text">CODEMIND</span>
-            <span className="logo-subtext">DIGITAL AGENCY LTD</span>
-          </div>
+          <img src="/c.png" alt="CodeMind Digital Agency Ltd" className="site-logo-image" />
         </Link>
 
         <nav className={`desktop-nav ${mobileOpen ? 'mobile-open' : ''}`} aria-label="Main navigation">
@@ -610,13 +604,7 @@ function HomePage() {
             className="hero-copy brand-copy"
           >
             <div className="brand-logo-row" aria-label="CodeMind logo">
-              <span className="brand-mark">
-                <span className="brand-mark-inner">C</span>
-              </span>
-              <div className="brand-wordmark">
-                <span className="brand-main">CODEMIND</span>
-                <span className="brand-sub">DIGITAL AGENCY LTD</span>
-              </div>
+              <img src="/c.png" alt="CodeMind Digital Agency Ltd" className="hero-logo-image" />
             </div>
 
             <h1>Turning Your Ideas <span>Into Digital Solutions</span></h1>
@@ -1731,8 +1719,7 @@ function Footer() {
       <div className="container footer-grid">
         <div>
           <div className="logo footer-logo">
-            <span className="logo-mark">CM</span>
-            <span className="logo-text">CodeMind</span>
+            <img src="/c.png" alt="CodeMind Digital Agency Ltd" className="footer-logo-image" />
           </div>
           <p>Turning ideas into digital solutions.</p>
         </div>
