@@ -12,7 +12,9 @@
   top: 0;
   z-index: 40;
   backdrop-filter: blur(14px);
-  background: linear-gradient(100deg, rgba(4, 15, 31, 0.98), rgba(7, 38, 78, 0.98));
+  background:
+    radial-gradient(circle at 78% 42%, rgba(14, 165, 233, 0.12), transparent 30%),
+    linear-gradient(122deg, #040f1f 0%, #072646 58%, #0a3d70 100%);
   border-bottom: 1px solid rgba(125, 211, 252, 0.16);
   box-shadow: 0 10px 30px rgba(7, 22, 43, 0.14);
 }
