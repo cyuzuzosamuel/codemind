@@ -2663,8 +2663,15 @@
     align-items: flex-start;
     padding: 18px;
     border-radius: 20px;
-    background: rgba(15, 23, 42, 0.98);
-    border: 1px solid rgba(148, 163, 184, 0.12);
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.14);
+  }
+
+  .desktop-nav .nav-item,
+  .desktop-nav .nav-item:hover,
+  .desktop-nav .nav-item.active {
+    color: #000000;
   }
 
   .mobile-open {
